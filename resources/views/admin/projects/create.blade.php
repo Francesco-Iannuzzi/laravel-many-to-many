@@ -35,6 +35,8 @@
             </div>
             {{-- form select types --}}
 
+            {{-- form check technologies --}}
+
             <div class="mb-3">
                 <label for="made_by" class="form-label">Author</label>
                 <input type="text" name="made_by" id="made_by"
