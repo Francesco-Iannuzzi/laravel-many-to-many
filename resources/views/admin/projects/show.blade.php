@@ -20,11 +20,13 @@
                                 <span class="badge bg-primary">{{ $project->type?->name }}</span>
                             </div>
 
-
-                            <div class="badge_technologies">
-                                <span class="badge bg-secondary">{{ $project->technology?->name }}ciao</span>
-                            </div>
-
+                            @foreach ($project->technologies as $technology)
+                                <div class="badge_technologies">
+                                    <span class="badge bg-secondary">
+                                        {{ $technology->name }}
+                                    </span>
+                                </div>
+                            @endforeach
 
                         </div>
                         <div class="card-bottom">
