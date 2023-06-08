@@ -81,6 +81,12 @@
                                     {{ __('Types') }}
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ Route::currentRouteName() == 'admin.technologies.index' ? 'bg-dark text-light rounded' : '' }}"
+                                    href="{{ route('admin.technologies.index') }}">
+                                    {{ __('Technologies') }}
+                                </a>
+                            </li>
                         </ul>
 
                     </div>
