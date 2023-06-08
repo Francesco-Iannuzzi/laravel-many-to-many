@@ -51,7 +51,11 @@ class ProjectController extends Controller
         
         $val_data['slug'] = $slug;
 
-        Project::create($val_data);
+        $newTechnologies = Project::create($val_data);
+
+        if ($request->has('technologies')) {
+            $newTechnologies->technologies()->attach($request->technologies);
+        }
         
         return to_route('admin.projects.index')->with('message', 'Project Added!');
     }
@@ -64,7 +68,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        return view('admin.projects.show', compact('project'));
+        return view('admin.projects.show', compact('project', 'technologies'));
     }
 
     /**
@@ -77,7 +81,10 @@ class ProjectController extends Controller
     {
         $types = Type::orderByDesc('id')->get();
 
-        return view('admin.projects.edit', compact('project', 'types'));
+        $technologies = Technology::orderByDesc('id')->get();
+
+
+        return view('admin.projects.edit', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -96,6 +103,10 @@ class ProjectController extends Controller
         $val_data['slug'] = $slug;
 
         $project->update($val_data);
+
+        if ($request->has('technologies')) {
+            $project->technologies()->sync($request->technologies);
+        }
 
         return to_route('admin.projects.index')->with('message', 'Project Updated!');
     }
