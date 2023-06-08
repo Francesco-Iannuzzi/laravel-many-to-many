@@ -32,7 +32,9 @@ class StoreProjectRequest extends FormRequest
             'link' => ['nullable'],
             'code_link' => ['nullable'],
             'trace' => ['nullable', 'max:255'],
-            'type_id' => ['exists:types,id']
+            'type_id' => ['exists:types,id'],
+            'technology_id' => ['exists:technologies,id'],
+
         ];
     }
 }
