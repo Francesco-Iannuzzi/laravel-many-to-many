@@ -24,7 +24,7 @@
             {{-- form title --}}
 
             <div class="mb-3">
-                <label for="type_id" class="form-label">Type</label>
+                <label for="type_id" class="form-label">Select Type</label>
                 <select class="form-select @error('type_id') is-invalid @enderror" name="type_id" id="type_id">
                     <option value="">Select Types</option>
                     @foreach ($types as $type)
@@ -36,6 +36,30 @@
                 </select>
             </div>
             {{-- form select types --}}
+
+            <div class='form-group mb-3'>
+                <label for="tags">Select Technologies</label>
+                @foreach ($technologies as $technology)
+                    <div class="form-check @error('tags') is-invalid @enderror">
+                        <label class='form-check-label'>
+                            @if ($errors->any())
+                                {{-- 1 (if) --}}
+                                <input name="tags[]" type="checkbox" value="{{ $technology->id }}" class="form-check-input"
+                                    {{ in_array($technology->id, old('tags', [])) ? 'checked' : '' }}>
+                            @else
+                                {{-- 2 (else) --}}
+                                <input name='tags[]' type='checkbox' value='{{ $technology->id }}' class='form-check-input'
+                                    {{ $project->technologies->contains($technology) ? 'checked' : '' }}>
+                            @endif
+                            {{ $technology->name }}
+                        </label>
+                    </div>
+                @endforeach
+                @error('tags')
+                    <div class='invalid-feedback'>{{ $message }}</div>
+                @enderror
+            </div>
+            {{-- form check technologies --}}
 
             <div class="mb-3">
                 <label for="made_by" class="form-label">Author</label>
@@ -112,8 +136,9 @@
 
             <div class="mb-3">
                 <label for="link" class="form-label">Link</label>
-                <input type="text" name="link" id="link" class="form-control @error('link') is-invalid @enderror"
-                    placeholder="Add link" aria-describedby="helpLink" value="{{ old('link', $project->link) }}">
+                <input type="text" name="link" id="link"
+                    class="form-control @error('link') is-invalid @enderror" placeholder="Add link"
+                    aria-describedby="helpLink" value="{{ old('link', $project->link) }}">
                 <small id="helpLink" class="text-muted">Insert Link of the project here</small>
             </div>
 

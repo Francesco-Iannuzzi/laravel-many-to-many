@@ -35,6 +35,22 @@
             </div>
             {{-- form select types --}}
 
+            <div class='form-group'>
+                <p>Select Technologies</p>
+                @foreach ($technologies as $technology)
+                    <div class="form-check @error('technologies') is-invalid @enderror">
+                        <label class='form-check-label'>
+                            <input name='technologies[]' type='checkbox' value='{{ $technology->id }}'
+                                class='form-check-input'
+                                {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}>
+                            {{ $technology->name }}
+                        </label>
+                    </div>
+                @endforeach
+                @error('technologies')
+                    <div class='invalid-feedback'>{{ $message }}</div>
+                @enderror
+            </div>
             {{-- form check technologies --}}
 
             <div class="mb-3">
@@ -112,8 +128,9 @@
 
             <div class="mb-3">
                 <label for="link" class="form-label">Link</label>
-                <input type="text" name="link" id="link" class="form-control @error('link') is-invalid @enderror"
-                    placeholder="Add link" aria-describedby="helpLink" value="{{ old('link') }}">
+                <input type="text" name="link" id="link"
+                    class="form-control @error('link') is-invalid @enderror" placeholder="Add link"
+                    aria-describedby="helpLink" value="{{ old('link') }}">
                 <small id="helpLink" class="text-muted">Insert Link of the project here</small>
             </div>
 
