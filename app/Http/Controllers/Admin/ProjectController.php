@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
-use App\Http\Controllers\Controller;
 use App\Models\Technology;
 use App\Models\Type;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
@@ -18,7 +19,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::orderByDesc('id')->get();
+        $projects = Auth::user()->projects()->orderByDesc('id')->get();
 
         return view('admin.projects.index', compact('projects'));
     }
@@ -50,6 +51,8 @@ class ProjectController extends Controller
         $slug = Project::generateSlug($val_data['title']);
         
         $val_data['slug'] = $slug;
+
+        //$val_data['user_id'] = Auth::id();
 
         $newTechnologies = Project::create($val_data);
 
@@ -84,7 +87,6 @@ class ProjectController extends Controller
         $types = Type::orderByDesc('id')->get();
 
         $technologies = Technology::orderByDesc('id')->get();
-
 
         return view('admin.projects.edit', compact('project', 'types', 'technologies'));
     }
