@@ -43,13 +43,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    /**
-     * Get all of the projects for the User
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function projects(): HasMany
-    {
-        return $this->hasMany(Project::class);
-    }
+   /**
+    * Get all of the projects for the User
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    */
+   public function projects(): HasMany
+   {
+       return $this->hasMany(Project::class);
+   }
 }

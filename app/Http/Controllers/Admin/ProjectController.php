@@ -52,7 +52,7 @@ class ProjectController extends Controller
         
         $val_data['slug'] = $slug;
 
-        //$val_data['user_id'] = Auth::id();
+        $val_data['user_id'] = Auth::id();
 
         $newTechnologies = Project::create($val_data);
 
@@ -88,7 +88,13 @@ class ProjectController extends Controller
 
         $technologies = Technology::orderByDesc('id')->get();
 
-        return view('admin.projects.edit', compact('project', 'types', 'technologies'));
+        if (Auth::id() === project->user_id) {
+        
+            return view('admin.projects.edit', compact('project', 'types', 'technologies'));
+            
+        }
+        abort(403);
+
     }
 
     /**
