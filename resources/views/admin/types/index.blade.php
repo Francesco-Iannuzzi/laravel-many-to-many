@@ -37,7 +37,7 @@
                                 <tr class="">
                                     <td scope="row">{{ $type->id }}</td>
                                     <td>
-                                        <form action="route('admin.types.update', $type->id)" method="post">
+                                        <form action="{{ route('admin.types.update', $type) }}" method="post">
                                             @csrf
 
                                             @method('PATCH')
