@@ -36,7 +36,23 @@
                             @forelse ($types as $type)
                                 <tr class="">
                                     <td scope="row">{{ $type->id }}</td>
-                                    <td>{{ $type->name }}</td>
+                                    <td>
+                                        <form action="route('admin.types.update', $type->id)" method="post">
+                                            @csrf
+
+                                            @method('PATCH')
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="editInput-{{ $type->id }}">
+                                                    <i class="fa-solid fa-pen-to-square"
+                                                        id="editInput-{{ $type->id }}"></i>
+                                                </span>
+                                                <input type="text" class="form-control" name="name" id="name"
+                                                    aria-describedby="editInput-{{ $type->id }}"
+                                                    value="{{ $type->name }}">
+                                            </div>
+                                            <small>Click enter to Update the TYPE</small>
+                                        </form>
+                                    </td>
                                     <td>
                                         <span class="badge bg-primary">{{ $type->projects->count() }}</span>
 
