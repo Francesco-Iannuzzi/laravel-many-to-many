@@ -36,10 +36,25 @@
                             @forelse ($technologies as $technology)
                                 <tr class="">
                                     <td scope="row">{{ $technology->id }}</td>
-                                    <td>{{ $technology->name }}</td>
+                                    <td>
+                                        <form action="{{ route('admin.technologies.update', $technology) }}" method="post">
+                                            @csrf
+
+                                            @method('PATCH')
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="editInput-{{ $technology->id }}">
+                                                    <i class="fa-solid fa-pen-to-square"
+                                                        id="editInput-{{ $technology->id }}"></i>
+                                                </span>
+                                                <input type="text" class="form-control" name="name" id="name"
+                                                    aria-describedby="editInput-{{ $technology->id }}"
+                                                    value="{{ $technology->name }}">
+                                            </div>
+                                            <small>Click enter to Update the TECHNOLOGY</small>
+                                        </form>
+                                    </td>
                                     <td>
                                         <span class="badge bg-primary">{{ $technology->projects->count() }}</span>
-
                                     </td>
                                     <td>
                                         <form action="{{ route('admin.technologies.destroy', $technology) }}"
