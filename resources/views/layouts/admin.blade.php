@@ -66,24 +66,28 @@
                             <li class="nav-item">
                                 <a class="nav-link {{ Route::currentRouteName() == 'admin.dashboard' ? 'bg-dark text-light rounded' : '' }}"
                                     aria-current="page" href="{{ route('admin.dashboard') }}">
+                                    <i class="fa-solid fa-gamepad"></i>
                                     {{ __('Dashboard') }}
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link {{ Route::currentRouteName() == 'admin.projects.index' ? 'bg-dark text-light rounded' : '' }}"
                                     href="{{ route('admin.projects.index') }}">
+                                    <i class="fa-solid fa-list"></i>
                                     {{ __('Projects') }}
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link {{ Route::currentRouteName() == 'admin.types.index' ? 'bg-dark text-light rounded' : '' }}"
                                     href="{{ route('admin.types.index') }}">
+                                    <i class="fa-solid fa-tags"></i>
                                     {{ __('Types') }}
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link {{ Route::currentRouteName() == 'admin.technologies.index' ? 'bg-dark text-light rounded' : '' }}"
                                     href="{{ route('admin.technologies.index') }}">
+                                    <i class="fa-solid fa-microchip"></i>
                                     {{ __('Technologies') }}
                                 </a>
                             </li>
