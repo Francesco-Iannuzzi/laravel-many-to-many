@@ -10,7 +10,7 @@
 
             @method('PUT')
             <h1 class="fs-4 text-secondary my-4">Edit {{ $project->title }}</h1>
-            <div class="mb-3">
+            <div class="mb-5">
                 <label for="title" class="form-label">Title</label>
                 <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror"
                     placeholder="Add title" aria-describedby="helpTitle" value="{{ old('title', $project->title) }}">
@@ -24,7 +24,7 @@
             @enderror
             {{-- form title --}}
 
-            <div class="mb-3">
+            <div class="mb-5">
                 <label for="type_id" class="form-label">Select Type</label>
                 <select class="form-select @error('type_id') is-invalid @enderror" name="type_id" id="type_id">
                     <option value="">Select Types</option>
@@ -38,15 +38,15 @@
             </div>
             {{-- form select types --}}
 
-            <div class='form-group mb-3'>
-                <label for="technologies">Select Technologies</label>
+            <div class='form-group mb-5'>
+                <label class="form-label">Select Technologies</label>
                 @foreach ($technologies as $technology)
                     <div class="form-check @error('technologies') is-invalid @enderror">
                         <label class='form-check-label'>
                             @if ($errors->any())
                                 {{-- 1 (if) --}}
-                                <input name="technologies[]" type="checkbox" value="{{ $technology->id }}"
-                                    class="form-check-input"
+                                <input name="technologies[]" id="technologies[]" type="checkbox"
+                                    value="{{ $technology->id }}" class="form-check-input"
                                     {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}>
                             @else
                                 {{-- 2 (else) --}}
@@ -64,7 +64,7 @@
             </div>
             {{-- form check technologies --}}
 
-            <div class="mb-3">
+            <div class="mb-5">
                 <label for="made_by" class="form-label">Author</label>
                 <input type="text" name="made_by" id="made_by"
                     class="form-control @error('made_by') is-invalid @enderror" placeholder="Add Author"
@@ -79,12 +79,15 @@
             @enderror
             {{-- form made_by --}}
 
-            <div class="mb-3">
-                <label for="cover" class="form-label">Cover</label>
-                <input type="file" name="cover" id="cover"
-                    class="form-control @error('cover') is-invalid @enderror" placeholder="Add Cover"
-                    aria-describedby="helpCover">
-                <small id="helpCover" class="text-muted">Insert Cover of the project</small>
+            <div class="d-flex mb-5 gap-4">
+                <img height="100" src="{{ asset('storage/' . $project->cover) }}" class="rounded">
+
+                <div class="w-100">
+                    <label for="cover" class="form-label">Cover</label>
+                    <input type="file" name="cover" id="cover"
+                        class="form-control @error('cover') is-invalid @enderror">
+                    <small id="helpCover" class="text-muted">Choose Cover of the project</small>
+                </div>
             </div>
 
             @error('cover')
@@ -94,7 +97,7 @@
             @enderror
             {{-- form cover --}}
 
-            <div class="mb-3">
+            <div class="mb-5">
                 <label for="description" class="form-label">Description</label>
                 <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description"
                     aria-describedby="helpDescription" rows="3">{{ old('description', $project->description) }}</textarea>
@@ -108,7 +111,7 @@
             @enderror
             {{-- form description --}}
 
-            <div class="mb-3">
+            <div class="mb-5">
                 <label for="trace" class="form-label">Trace</label>
                 <textarea class="form-control @error('trace') is-invalid @enderror" name="trace" id="trace"
                     aria-describedby="helpTrace" rows="3">{{ old('trace', $project->trace) }}</textarea>
@@ -122,7 +125,7 @@
             @enderror
             {{-- form trace --}}
 
-            <div class="mb-3">
+            <div class="mb-5">
                 <label for="creation_date" class="form-label">Creation Date</label>
                 <input type="date" name="creation_date" id="creation_date"
                     class="form-control @error('creation_date') is-invalid @enderror" placeholder="Add date Project"
@@ -137,7 +140,7 @@
             @enderror
             {{-- form creation_date --}}
 
-            <div class="mb-3">
+            <div class="mb-5">
                 <label for="link" class="form-label">Link</label>
                 <input type="text" name="link" id="link"
                     class="form-control @error('link') is-invalid @enderror" placeholder="Add link"
@@ -152,7 +155,7 @@
             @enderror
             {{-- form link --}}
 
-            <div class="mb-3">
+            <div class="mb-5">
                 <label for="code_link" class="form-label">Code's Link</label>
                 <input type="text" name="code_link" id="code_link"
                     class="form-control @error('code_link') is-invalid @enderror" placeholder="Add code_link"
