@@ -4,7 +4,7 @@
     <div class="container py-5">
         @include('partials.validation_errors')
 
-        <form action="{{ route('admin.projects.store') }}" method="post" class="pt-3">
+        <form action="{{ route('admin.projects.store') }}" method="post" enctype="multipart/form-data" class="pt-3">
             @csrf
 
             <h1 class="fs-4 text-secondary my-4">Add new Project</h1>

@@ -4,7 +4,8 @@
     <div class="container py-5">
         @include('partials.validation_errors')
 
-        <form action="{{ route('admin.projects.update', $project) }}" method="post" class="pt-3">
+        <form action="{{ route('admin.projects.update', $project) }}" method="post" enctype="multipart/form-data"
+            class="pt-3">
             @csrf
 
             @method('PUT')
