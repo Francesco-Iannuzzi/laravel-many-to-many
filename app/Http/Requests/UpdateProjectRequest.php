@@ -29,7 +29,7 @@ class UpdateProjectRequest extends FormRequest
             'made_by' => ['required', 'max:100'],
             'description' => ['nullable', 'max:255'],
             'creation_date' => ['nullable'],
-            'cover' => ['nullable'],
+            'cover' => ['nullable', 'image', 'max:955'],
             'link' => ['nullable'],
             'code_link' => ['nullable'],
             'trace' => ['nullable', 'max:255'],
