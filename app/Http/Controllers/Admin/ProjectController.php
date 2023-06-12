@@ -56,7 +56,7 @@ class ProjectController extends Controller
         $val_data['user_id'] = Auth::id();
 
         if ($request->hasFile('cover')) {
-            //dd($request->cover);
+            
             $img_path = Storage::put('uploads', $request->cover);
 
             $val_data['cover'] = $img_path;
@@ -119,6 +119,17 @@ class ProjectController extends Controller
         $slug = Project::generateSlug($val_data['title']);
         
         $val_data['slug'] = $slug;
+
+        if ($request->hasFile('cover')) {
+
+            if ($project->cover) {
+                Storage::delete($project->cover);
+            }
+            
+            $img_path = Storage::put('uploads', $request->cover);
+
+            $val_data['cover'] = $img_path;
+        }
 
         $project->update($val_data);
 
