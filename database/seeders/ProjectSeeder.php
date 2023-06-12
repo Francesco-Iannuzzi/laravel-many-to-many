@@ -26,7 +26,7 @@ class ProjectSeeder extends Seeder
             $project->made_by = $faker->name();
             $project->description = $faker->paragraph(2);
             $project->creation_date = $faker->dateTimeThisYear();
-            $project->cover = $faker->imageUrl(category: 'Projects', format: 'jpg');
+            $project->cover = 'placeholders/' . $faker->image('storage/app/public/placeholders/', fullPath: false, category: 'Projects', word: $project->title, gray: true);
             $project->link = $faker->url();
             $project->code_link = $faker->url();
             $project->trace = $faker->paragraph(3);
