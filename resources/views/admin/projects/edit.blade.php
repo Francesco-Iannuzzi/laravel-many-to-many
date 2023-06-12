@@ -81,9 +81,9 @@
 
             <div class="mb-3">
                 <label for="cover" class="form-label">Cover</label>
-                <input type="text" name="cover" id="cover"
+                <input type="file" name="cover" id="cover"
                     class="form-control @error('cover') is-invalid @enderror" placeholder="Add Cover"
-                    aria-describedby="helpCover" value="{{ old('cover', $project->cover) }}">
+                    aria-describedby="helpCover">
                 <small id="helpCover" class="text-muted">Insert Cover of the project</small>
             </div>
 
