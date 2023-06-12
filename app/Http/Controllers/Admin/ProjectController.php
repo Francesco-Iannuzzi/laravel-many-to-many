@@ -9,6 +9,7 @@ use App\Models\Technology;
 use App\Models\Type;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -54,10 +55,17 @@ class ProjectController extends Controller
 
         $val_data['user_id'] = Auth::id();
 
-        $newTechnologies = Project::create($val_data);
+        if ($request->hasFile('cover')) {
+            //dd($request->cover);
+            $img_path = Storage::put('uploads', $request->cover);
+
+            $val_data['cover'] = $img_path;
+        }
+
+        $newProject = Project::create($val_data);
 
         if ($request->has('technologies')) {
-            $newTechnologies->technologies()->attach($request->technologies);
+            $newProject->technologies()->attach($request->technologies);
         }
         
         return to_route('admin.projects.index')->with('message', 'Project Added!');
